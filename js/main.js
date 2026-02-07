@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     async function loadLang(lang = "ru") {
-        const res = await fetch(`/config/config-${lang}.json`);
+        const res = await fetch(`/config/config-${lang.toLocaleLowerCase()}.json`);
         const config = await res.json();
 
         document.querySelectorAll('[data-key]').forEach(el => {
