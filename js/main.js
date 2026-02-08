@@ -1,5 +1,5 @@
-// 🔥 Глобальная переменная (работает до DOMContentLoaded)
 let selected;
+let selectedMob;
 
 async function loadLang(lang) {
     try {
@@ -16,7 +16,6 @@ async function loadLang(lang) {
 
         if (selected) selected.textContent = lang.toUpperCase();
 
-        // 🔥 РЕДИРЕКТ для SEO
         redirectUrl(lang);
 
     } catch (error) {
@@ -29,11 +28,9 @@ function redirectUrl(lang) {
     const currentPath = window.location.pathname;
 
     if (lang === 'ru' && currentPath.startsWith('/en/')) {
-        // Редирект с /en/ на RU главную
         window.location.href = '/';
     }
     else if (lang === 'en' && !currentPath.startsWith('/en/')) {
-        // Редирект на EN главную
         window.location.href = '/en/';
     }
 }
@@ -57,10 +54,9 @@ function getBrowserLang() {
     return lang.startsWith('en') ? 'en' : 'ru';
 }
 
-// ✅ Инициализация с РЕДИРЕКТОМ
 document.addEventListener('DOMContentLoaded', () => {
-    // Инициализируем selected
     selected = document.getElementById('choiseSelected');
+    selectedMob = document.getElementById('choiseSelectedMob');
 
     choiceLang();
 
@@ -70,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const finalLang = urlLang || savedLang || browserLang || 'ru';
 
     if (selected) selected.textContent = finalLang.toUpperCase();
+    if (selected) selectedMob.textContent = finalLang.toUpperCase();
     loadLang(finalLang);
 });
 
@@ -77,21 +74,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function openChoises() {
-        const choises = document.querySelector('.choises');
+        const choises = document.querySelectorAll('.choises');
 
-        choises.addEventListener('click', () => {
+        choises.forEach((choise, index) => {
+            choise.addEventListener('click', () => {
 
-            const items = document.querySelector('.choise__items')
+                const items = document.querySelectorAll('.choise__items')
 
-            choises.classList.toggle('active')
+                choise.classList.toggle('active')
 
-            if (choises.classList.contains('active')) {
-                items.style.height = items.scrollHeight + 'px'
-            } else {
-                items.style.height = 0 + 'px'
-            }
+                if (choise.classList.contains('active')) {
+                    items[index].style.height = items[index].scrollHeight + 'px'
+                } else {
+                    items[index].style.height = 0 + 'px'
+                }
 
 
+            })
         })
     }
     openChoises()
@@ -243,6 +242,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // маска телефона
+
+    function burgerMenu() {
+        const button = document.querySelector('.header__burger');
+        const menu = document.querySelector('.header__mobile-drop');
+
+        button.addEventListener(('click'), () => {
+            menu.classList.toggle('active')
+
+            const links = menu.querySelectorAll('a[href^="#"]')
+            links.forEach((link) => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('active')
+                })
+            })
+            console.log(links);
+
+            window.addEventListener('scroll', () => {
+                menu.classList.remove('active')
+            })
+
+
+        })
+    }
+
+    if (window.screen.width < 992) {
+        burgerMenu()
+    }
 
 })
 
