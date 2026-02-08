@@ -13,16 +13,18 @@
     <header class="header">
         <div class="container">
             <div class="header__wrapper">
-                <a href="/" class="header__logo">Zasorenko</a>
-                <nav class="header__nav">
-                    <a href="#about" data-key="navAbout" class="header__item"></a>
-                    <a href="#partners" data-key="navPartners" class="header__item"></a>
-                </nav>
+                <div class="header__left">
+                    <a href="/" class="header__logo">OnlyPartners</a>
+                    <nav class="header__nav">
+                        <a href="#about" data-key="navAbout" class="header__item"></a>
+                        <a href="#partners" data-key="navPartners" class="header__item"></a>
+                    </nav>
+                </div>
                 <div class="header__contacts">
                     <a href="#" class="header__tg">
                         <img src="/img/tg-icon.png" alt="">
                     </a>
-                    <a href="#contacts" data-key="contactsButton" class="btn btn-white header__contact">Контакты</a>
+                    <a href="#contacts" data-key="contactsButton" class="btn header__contact">Контакты</a>
                     <div class="choises">
                         <div id="choiseSelected" class="choise__selected">
 
@@ -74,7 +76,7 @@
     <section id="who" class="who">
         <div class="container">
             <div class="who__wrapper">
-                <div class="who__title" data-key="whoTitle"></div>
+                <div class="who__title title" data-key="whoTitle"></div>
                 <div class="who__subtitle" data-key="whoSubtitle"></div>
                 <div class="who__list">
                     <div class="who__item">
@@ -100,7 +102,7 @@
     <section id="advantages" class="who advantages">
         <div class="container">
             <div class="who__wrapper">
-                <div class="who__title" data-key="advantagesTitle"></div>
+                <div class="who__title title" data-key="advantagesTitle"></div>
                 <div class="who__subtitle" data-key="advantagesSubtitle"></div>
                 <div class="who__list">
                     <div class="who__item">
@@ -231,7 +233,92 @@
             </div>
         </div>
     </section>
+    <section class="partners">
+        <div class="container">
+            <div class="partners__wrapper">
+                <div data-key="partnersTitle" class="partners__title title"></div>
+                <ol class="rules__sublist">
+                    <li class="rules__subitem" data-key="partnersSubList1"></li>
+                    <li class="rules__subitem" data-key="partnersSubList2"></li>
+                    <li class="rules__subitem" data-key="partnersSubList3"></li>
+                    <li class="rules__subitem" data-key="partnersSubList4"></li>
+                    <li class="rules__subitem" data-key="partnersSubList5"></li>
+                    <li class="rules__subitem" data-key="partnersSubList6"></li>
+                </ol>
+                <div class="partners__items">
+                    <div class="partners__item">
+                        <div class="partners__number"></div>
+                        <div class="partners__info">
+                            <div data-key="partnersItemTitle1" class="partners__name"></div>
+                            <div data-key="partnersItemText1" class="partners__text"></div>
+                        </div>
+                    </div>
+                    <div class="partners__item">
+                        <div class="partners__number"></div>
+                        <div class="partners__info">
+                            <div data-key="partnersItemTitle2" class="partners__name"></div>
+                            <div data-key="partnersItemText2" class="partners__text"></div>
+                        </div>
+                    </div>
+                    <div class="partners__item">
+                        <div class="partners__number"></div>
+                        <div class="partners__info">
+                            <div data-key="partnersItemTitle3" class="partners__name"></div>
+                            <div data-key="partnersItemText3" class="partners__text"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="advantages" class="who advantages safety">
+        <div class="container">
+            <div class="who__wrapper">
+                <div class="who__title title" data-key="safetyTitle"></div>
+                <div class="who__subtitle">
+                    <p data-key="safetySubTitle1"></p>
+                    <p data-key="safetySubTitle2"></p>
+                </div>
+                <div class="who__list">
+                    <div class="who__item">
+                        <div data-key="safetyListTitle1" class="who__name"></div>
+                        <div data-key="safetyListText1" class="who__descr"></div>
+                    </div>
+                    <div class="who__item">
+                        <div data-key="safetyListTitle2" class="who__name"></div>
+                        <div data-key="safetyListText2" class="who__descr"></div>
+                    </div>
+                    <div class="who__item">
+                        <div data-key="safetyListTitle3" class="who__name"></div>
+                        <div data-key="safetyListText3" class="who__descr"></div>
+                    </div>
+                    <div class="who__item">
+                        <div data-key="safetyListTitle4" class="who__name"></div>
+                        <div data-key="safetyListText4" class="who__descr"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="tg">
+        <a href="#" class="tg__button">Telegram</a>
+    </section>
+
+
+    <section class="form">
+        <div class="container">
+            <div class="form__wrapper">
+                <div class="form__title title"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="/js/main.js"></script>
 </body>
-<script src="/js/main.js"></script>
 
 </html>

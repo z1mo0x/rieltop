@@ -4,6 +4,7 @@ $main: #d4bd68;
 $dark-bg: #292929;
 $second: rgb(255, 217, 0);
 $shadow: rgba(0, 0, 0, .15);
+$blue: #3d8be3;
 
 html {
     scroll-behavior: smooth;
@@ -11,6 +12,7 @@ html {
 
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
 
@@ -53,9 +55,17 @@ body {
     }
 }
 
+
+.title {
+    font-size: clamp(24px, 19.26px + 1.18vw, 42px);
+    font-weight: bold;
+    text-align: center;
+}
+
 .header {
-    padding: 10px 40px;
-    background: $main;
+    padding: 0px 40px;
+    border-bottom: 1px solid lighten($shadow, 100%);
+    // background: $main;
 
     &__wrapper {
         display: flex;
@@ -63,31 +73,40 @@ body {
         align-items: center;
     }
 
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
     &__logo {
-        color: white;
+        color: $main;
         text-decoration: none;
-        font-size: 42px;
+        font-size: 36px;
         font-weight: bold;
+        line-height: 100%;
     }
 
     &__nav {
         display: flex;
         align-items: center;
         gap: 30px;
-        color: white;
+        color: $main;
         font-weight: 500;
         font-size: 18px;
+        line-height: 18px;
+        margin-top: 10px;
     }
 
     &__item {
         text-decoration: none;
-        color: white;
+        color: $main;
     }
 
     &__contacts {
         display: flex;
-        gap: 20px;
         align-items: center;
+        gap: 20px;
     }
 
     &__tg {
@@ -111,6 +130,7 @@ body {
     position: absolute;
     right: 20px;
     font-size: 20px;
+    color: white;
     line-height: 20px;
     // font-weight: 900;
     top: 50%;
@@ -121,12 +141,17 @@ body {
     cursor: pointer;
     padding: 5px 15px;
 
-    .active {}
+    .active &__selected {
+        border-radius: 5px 5px 0 0;
+    }
 
     &__selected {
         padding: 10px 20px;
-        background: white;
+        background: $main;
+        color: white;
+        border-radius: 5px;
         font-weight: bold;
+        transition: all .3s;
     }
 
     &__items {
@@ -322,7 +347,6 @@ body {
     &__title {
         text-align: center;
         font-weight: bold;
-        font-size: 42px;
     }
 
     &__subtitle {
@@ -388,6 +412,8 @@ body {
 }
 
 .rules {
+
+    background: #eeeeee;
     padding: 90px 0;
 
     &__wrapper {
@@ -402,20 +428,30 @@ body {
     }
 
     &__sublist {
-        list-style: disc;
         padding-left: 20px;
         max-width: 560px;
         margin: 0 auto;
         margin-top: 30px;
         display: grid;
         gap: 10px;
+        font-weight: 300;
     }
+
+    ul.rules__sublist {
+        list-style: disc;
+    }
+
+    ol.rules__sublist {
+        list-style: decimal;
+    }
+
 
     &__subitem {
         font-size: 14px;
     }
 
     &__questions {
+        background: white;
         margin-top: 50px;
         box-shadow: 1px 1px 10px $shadow;
     }
@@ -462,7 +498,7 @@ body {
 
     &__answer {
         height: 0;
-        transition: all .3s;
+        transition: all .5s;
         overflow: hidden;
         padding: 0px 30px;
         font-weight: 300;
@@ -476,4 +512,102 @@ body {
         transform: translateY(-50%) rotate(-45deg);
     }
 
+}
+
+.partners {
+    padding: 135px 0;
+
+    &__wrapper {}
+
+    .rules__sublist {
+        li {
+            font-size: 18px;
+        }
+    }
+
+    &__title {}
+
+    &__items {
+        margin-top: 80px;
+        display: grid;
+        gap: 80px;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 22.5px;
+            z-index: 0;
+            top: 0px;
+            width: 3px;
+            height: 90%;
+            background: $second;
+        }
+    }
+
+    &__item {
+        display: flex;
+        gap: 25px;
+        counter-increment: numberBlock;
+        z-index: 1;
+    }
+
+    &__number {
+        background: $second;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        position: relative;
+        flex-shrink: 0;
+
+
+        &::before {
+            content: counter(numberBlock);
+            font-size: 20px;
+            line-height: 20px;
+            font-weight: 600;
+        }
+
+
+    }
+
+    &__info {}
+
+    &__name {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    &__text {
+        font-weight: 300;
+    }
+}
+
+.safety {
+    .who__subtitle {
+        max-width: 560px;
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.tg {
+
+    padding: 50px 0;
+
+    &__button {
+        padding: 15px 60px;
+        border: 3px solid $blue;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 18px;
+        color: black;
+        display: block;
+        width: max-content;
+        margin: 0 auto;
+    }
 }
