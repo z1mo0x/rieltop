@@ -1088,4 +1088,9 @@ body {
     .partners__items::after {
         height: 85%;
     }
+
+    .about {
+        min-height: 100vh;
+        height: 100%;
+    }
 }
