@@ -348,7 +348,7 @@ body {
 }
 
 .who {
-    height: 100vh;
+    min-height: 100vh;
 
     &__wrapper {
         padding: 135px 0;
@@ -823,4 +823,12 @@ body {
     }
 }
 
-.animation {}
+@media (max-width:1399px) {
+    .container {
+        padding: 0 40px;
+    }
+
+    .header {
+        padding: 0;
+    }
+}

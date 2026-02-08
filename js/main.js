@@ -1,10 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
+// 🔥 Глобальная переменная (работает до DOMContentLoaded)
+let selected;
 
-    const selected = document.getElementById('choiseSelected')
-
-
-    async function loadLang(lang = "ru") {
-        const res = await fetch(`/config/config-${lang.toLocaleLowerCase()}.json`);
+async function loadLang(lang) {
+    try {
+        const res = await fetch(`/config/config-${lang}.json`);
         const config = await res.json();
 
         document.querySelectorAll('[data-key]').forEach(el => {
@@ -14,22 +13,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.documentElement.lang = lang;
         localStorage.setItem('lang', lang);
+
+        if (selected) selected.textContent = lang.toUpperCase();
+
+        // 🔥 РЕДИРЕКТ для SEO
+        redirectUrl(lang);
+
+    } catch (error) {
+        console.error('Ошибка загрузки:', error);
+        if (selected) selected.textContent = 'RU';
     }
+}
 
-    function choiceLang() {
-        const buttons = document.querySelectorAll('.choise');
+function redirectUrl(lang) {
+    const currentPath = window.location.pathname;
 
-        buttons.forEach((button) => {
-            button.addEventListener('click', () => {
-                const language = button.getAttribute('data-lang')
-                selected.textContent = language
-                localStorage.setItem('lang', language)
-                loadLang(language)
-            })
-        })
+    if (lang === 'ru' && currentPath.startsWith('/en/')) {
+        // Редирект с /en/ на RU главную
+        window.location.href = '/';
     }
+    else if (lang === 'en' && !currentPath.startsWith('/en/')) {
+        // Редирект на EN главную
+        window.location.href = '/en/';
+    }
+}
 
-    choiceLang()
+function choiceLang() {
+    document.querySelectorAll('.choise').forEach(button => {
+        button.addEventListener('click', () => {
+            const language = button.getAttribute('data-lang').toLowerCase();
+            loadLang(language);
+        });
+    });
+}
+
+function getLangFromUrl() {
+    const pathname = window.location.pathname;
+    return pathname.startsWith('/en/') ? 'en' : 'ru';
+}
+
+function getBrowserLang() {
+    const lang = navigator.language || navigator.languages[0] || 'ru';
+    return lang.startsWith('en') ? 'en' : 'ru';
+}
+
+// ✅ Инициализация с РЕДИРЕКТОМ
+document.addEventListener('DOMContentLoaded', () => {
+    // Инициализируем selected
+    selected = document.getElementById('choiseSelected');
+
+    choiceLang();
+
+    const urlLang = getLangFromUrl();
+    const savedLang = localStorage.getItem('lang') || 'ru';
+    const browserLang = getBrowserLang();
+    const finalLang = urlLang || savedLang || browserLang || 'ru';
+
+    if (selected) selected.textContent = finalLang.toUpperCase();
+    loadLang(finalLang);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
 
     function openChoises() {
         const choises = document.querySelector('.choises');
@@ -51,11 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     openChoises()
 
-    const savedLang = localStorage.getItem('lang') || 'ru';
-    selected.textContent = savedLang
-    loadLang(savedLang);
-
-    document.addEventListener('DOMContentLoaded', choiceLang);
 
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
