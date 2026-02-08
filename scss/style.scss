@@ -716,7 +716,7 @@ body {
 
     &__text {
         margin-top: 30px;
-        font-size: 20px;
+        font-size: clamp(16px, 14.95px + 0.26vw, 20px);
         font-weight: 300;
     }
 
@@ -1083,5 +1083,9 @@ body {
     .form__phone {
         grid-column: unset;
         grid-row: unset;
+    }
+
+    .partners__items::after {
+        height: 85%;
     }
 }
